@@ -25,7 +25,6 @@ new_weight_event = threading.Event()
 # Definir protocolo con los atributos necesarios
 CH341Protocol = namedtuple('CH341Protocol', SerialProtocol._fields + ('zeroCommand', 'tareCommand', 'clearCommand', 'autoResetWeight'))
 
-_logger.info('Hola mundo')
 # Configurar el protocolo del dispositivo serial CH341
 CH341SerialProtocol = CH341Protocol(
     name='CH341 Serial Protocol',
@@ -35,7 +34,7 @@ CH341SerialProtocol = CH341Protocol(
     parity=serial.PARITY_EVEN,
     timeout=0.5,
     writeTimeout=0.5,
-    measureRegexp=re.compile(b'\x02\d{2} (\d{6})\d{6}\r\n'),
+    measureRegexp=re.compile(b'\x02.{2} (\d{6})\d{6}\r\n'),
     statusRegexp=None,
     commandDelay=0.1,
     measureDelay=0.1,
